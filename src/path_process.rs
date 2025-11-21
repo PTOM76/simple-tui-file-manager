@@ -75,7 +75,7 @@ pub fn get_home_directory_path() -> Option<PathBuf> {
     let home_dir = "HOME";
     match std::env::var(home_dir) {
         Ok(path) => Some(PathBuf::from(path)),
-        Err(e) => None,
+        Err(_e) => None,
     }
 }
 

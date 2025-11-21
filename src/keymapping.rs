@@ -19,21 +19,23 @@ pub fn input_keybindings(code: KeyCode, mut line: String) -> String {
 }
 
 pub fn main_keybindings(key: KeyEvent, mode: Mode, app: &mut App) -> bool {
-    match (mode, key.code) {
-        (Mode::Normal, KeyCode::Char('q')) => return true,
-        (Mode::Normal, KeyCode::Char('j') | KeyCode::Down) => {
-            let selected_dir = app.peek_selected_statefuldir();
-            selected_dir.select_next();
+    if mode != Mode::Normal {
+        return false;
+    }
+    
+    match (key.code) {
+        KeyCode::Char('q') => return true,
+        KeyCode::Char('j') | KeyCode::Down => {
+            app.peek_selected_statefuldir().select_next();
         }
-        (Mode::Normal, KeyCode::Char('k') | KeyCode::Up) => {
-            let selected_dir = app.peek_selected_statefuldir();
-            selected_dir.select_previous();
+        KeyCode::Char('k') | KeyCode::Up => {
+            app.peek_selected_statefuldir().select_previous();
         }
-        (Mode::Normal, KeyCode::Char('h') | KeyCode::Left) => app.move_to_parent_dir(),
-        (Mode::Normal, KeyCode::Char('l') | KeyCode::Right) => app.move_to_child_dir(),
-        (Mode::Normal, KeyCode::Tab) => app.next_dirtab(),
-        (Mode::Normal, KeyCode::BackTab) => app.prev_dirtab(),
-        (_, _) => {}
+        KeyCode::Char('h') | KeyCode::Left => app.move_to_parent_dir(),
+        KeyCode::Char('l') | KeyCode::Right => app.move_to_child_dir(),
+        KeyCode::Tab => app.next_dirtab(),
+        KeyCode::BackTab => app.prev_dirtab(),
+        _ => {}
     }
 
     false
