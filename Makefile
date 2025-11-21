@@ -4,7 +4,7 @@ build:
 	cargo build --release
 
 deb:
-	cargo deb
+	deb-x86_64 deb-aarch64
 
 exec:
 	cargo run
