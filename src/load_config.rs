@@ -32,6 +32,10 @@ pub fn default_vim_movements() -> ModeKeybinds {
         ("j", "move_to_next_file_item"),
         ("k", "move_to_prev_file_item"),
         ("l", "move_to_child_dir"),
+        ("down", "move_to_next_file_item"),
+        ("up", "move_to_prev_file_item"),
+        ("left", "move_to_parent_dir"),
+        ("right", "move_to_child_dir"),
         ("Tab", "next_dirtab"),
         ("Backtab", "prev_dirtab"),
         ("q", "quit"),
@@ -49,6 +53,10 @@ pub fn default_vim_movements() -> ModeKeybinds {
         ("C-j", "move_to_next_file_item"),
         ("C-k", "move_to_prev_file_item"),
         ("C-l", "move_to_child_dir"),
+        ("down", "move_to_next_file_item"),
+        ("up", "move_to_prev_file_item"),
+        ("left", "move_to_parent_dir"),
+        ("right", "move_to_child_dir"),
         ("Tab", "next_dirtab"),
         ("Backtab", "prev_dirtab"),
         ("escape", "normal"),
@@ -65,6 +73,10 @@ pub fn default_vim_movements() -> ModeKeybinds {
         ("j", "move_to_next_file_item"),
         ("k", "move_to_prev_file_item"),
         ("l", "move_to_child_dir"),
+        ("down", "move_to_next_file_item"),
+        ("up", "move_to_prev_file_item"),
+        ("left", "move_to_parent_dir"),
+        ("right", "move_to_child_dir"),
         ("Tab", "next_dirtab"),
         ("Backtab", "prev_dirtab"),
         ("q", "quit"),
@@ -148,6 +160,10 @@ pub fn default_vim_ctrl_movements() -> ModeKeybinds {
         ("C-j", "move_to_next_file_item"),
         ("C-k", "move_to_prev_file_item"),
         ("C-l", "move_to_child_dir"),
+        ("down", "move_to_next_file_item"),
+        ("up", "move_to_prev_file_item"),
+        ("left", "move_to_parent_dir"),
+        ("right", "move_to_child_dir"),
         ("Tab", "next_dirtab"),
         ("Backtab", "prev_dirtab"),
         ("q", "quit"),
@@ -165,6 +181,10 @@ pub fn default_vim_ctrl_movements() -> ModeKeybinds {
         ("C-j", "move_to_next_file_item"),
         ("C-k", "move_to_prev_file_item"),
         ("C-l", "move_to_child_dir"),
+        ("down", "move_to_next_file_item"),
+        ("up", "move_to_prev_file_item"),
+        ("left", "move_to_parent_dir"),
+        ("right", "move_to_child_dir"),
         ("Tab", "next_dirtab"),
         ("Backtab", "prev_dirtab"),
         ("escape", "normal"),
@@ -181,6 +201,10 @@ pub fn default_vim_ctrl_movements() -> ModeKeybinds {
         ("C-j", "move_to_next_file_item"),
         ("C-k", "move_to_prev_file_item"),
         ("C-l", "move_to_child_dir"),
+        ("down", "move_to_next_file_item"),
+        ("up", "move_to_prev_file_item"),
+        ("left", "move_to_parent_dir"),
+        ("right", "move_to_child_dir"),
         ("Tab", "next_dirtab"),
         ("Backtab", "prev_dirtab"),
         ("q", "quit"),
@@ -754,6 +778,38 @@ fn string_to_keyevent(s: &str) -> KeyEvent {
             code: KeyCode::Char('Z'),
             modifiers: KeyModifiers::ALT,
         },
+        "Up" => KeyEvent {
+            code: KeyCode::Up,
+            modifiers: KeyModifiers::NONE,
+        },
+        "Down" => KeyEvent {
+            code: KeyCode::Down,
+            modifiers: KeyModifiers::NONE,
+        },
+        "Left" => KeyEvent {
+            code: KeyCode::Left,
+            modifiers: KeyModifiers::NONE,
+        },
+        "Right" => KeyEvent {
+            code: KeyCode::Right,
+            modifiers: KeyModifiers::NONE,
+        },
+        "up" => KeyEvent {
+            code: KeyCode::Up,
+            modifiers: KeyModifiers::NONE,
+        },
+        "down" => KeyEvent {
+            code: KeyCode::Down,
+            modifiers: KeyModifiers::NONE,
+        },
+        "left" => KeyEvent {
+            code: KeyCode::Left,
+            modifiers: KeyModifiers::NONE,
+        },
+        "right" => KeyEvent {
+            code: KeyCode::Right,
+            modifiers: KeyModifiers::NONE,
+        },
         _ => KeyEvent {
             code: KeyCode::Null,
             modifiers: KeyModifiers::NONE,
@@ -1155,7 +1211,7 @@ pub fn load_user_config_file() -> UserConfig {
             }
         }
         // TODO: logging this e
-        Err(e) => UserConfig::default_dark(),
+        Err(_e) => UserConfig::default_dark(),
     }
 }
 
