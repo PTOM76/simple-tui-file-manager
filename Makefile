@@ -3,8 +3,7 @@ all: build deb
 build:
 	cargo build --release
 
-deb:
-	deb-x86_64 deb-aarch64
+deb: deb-x86_64 deb-aarch64
 
 exec:
 	cargo run
